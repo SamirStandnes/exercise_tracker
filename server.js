@@ -1,22 +1,28 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-
 const cors = require('cors')
-
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
-
 app.use(cors())
-
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+const test = require('./tests/test');
+const hello = require('./tests/hello');
+const post = require('./tests/post');
+const update = require('./tests/update');
+
 
 app.use(express.static('public'))
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
+
+
+app.use(test);
+app.use(hello);
+app.use(post);
+app.use(update);
 
 
 // Not found middleware
@@ -44,5 +50,5 @@ app.use((err, req, res, next) => {
 })
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
+  console.log('The magic is happening on port ' + listener.address().port + Date())
 })
