@@ -2,9 +2,10 @@ const db = require('../models/db');
 
 const checkUsername = () => {
     return function (req, res, next) {
-        console('using checkUser function');
+        console.log('using checkUser function');
         console.log(req.body.username);
-        db.User.findOne({username: req.body.username}, function (err, data) {
+      
+        db.User.findOne({username: req.username}, function (err, data) {
             if(err) {
                 throw err;
             }
@@ -21,6 +22,7 @@ const checkUsername = () => {
         
             }
         });
+
     }
 };
 
