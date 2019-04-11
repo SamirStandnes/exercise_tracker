@@ -10,6 +10,7 @@ const test = require('./tests/test');
 const hello = require('./tests/hello');
 const post = require('./tests/post');
 const update = require('./tests/update');
+const newU = require('./middleware/newUser');
 
 
 app.use(express.static('public'))
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+app.use(newU);  
 
 app.use(test);
 app.use(hello);
