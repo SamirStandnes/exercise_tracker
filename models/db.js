@@ -22,7 +22,7 @@ const exercise_data = new Schema ({
 const newUser = new Schema({
   username: String,
   user_id: String,
-  exercise: [{date: String, descritpion: String}]
+  exercise: [{date: String, description: String}]
 });
 
 // init db model
