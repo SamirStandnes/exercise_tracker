@@ -1,7 +1,9 @@
 const db = require('../models/db');
-const createUser = require('./createUser')();
+const createUser = require('./createUser');
 
 const checkUsername = () => {
+    console.log("running checkUsername");
+
     return function (req, res, next) {
         console.log('using checkUser function');
         console.log(req.body.username);
@@ -27,7 +29,6 @@ const checkUsername = () => {
                 }
 
                 res.json({user_id: doc.user_id});
-
 
                });
             }
