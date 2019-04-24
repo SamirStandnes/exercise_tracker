@@ -1,23 +1,31 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const db = require("../models/db");
 
-router.post('/api/exercise/add', function (req, res, err) {
-    console.log("POST to exercise");
-    //let exercise = {date: "test date", description: "description test"};
-    console.log(req.body.userId, req.body.description);
-    /*
-   db.User.findOneAndUpdate({username: 'test3'}, {$push:{exercise:exercise}}, {new: true},  function (err, doc) {
-            if(err) {
-            console.log('some error in updating');
-        }
+router.post("/api/exercise/add", function(req, res, err) {
+  console.log("POST to exercise");
+  console.log(
+    req.body.userId,
+    req.body.description,
+    req.body.duration,
+    req.body.date
+  );
+  let exercise = { date: req.body.date, description: req.body.description };
+  db.User.findOneAndUpdate(
+    { username: req.body.userId },
+    { $push: {exercise:exercise} },
+    { new: true },
+    function(err, doc) {
+      if (err) {
+        console.log("some error in updating");
+        res.status(404);
+      }
+      res.status(201).json({ result: "Yes" });
+      console.log(doc);
+    }
+  );
 
-        res.json({result: 'Yes'});
-
-    });
-
-    */
-    /*
+  /*
     db.User.findOneAndDelete({username: 'test3'}, function (err, data) {
             //console.log(data);
 
@@ -28,11 +36,6 @@ router.post('/api/exercise/add', function (req, res, err) {
         
     });
   */
-
-
-
 });
-
-
 
 module.exports = router;

@@ -21,16 +21,16 @@ const checkUsername = () => {
             else if (doc === null) {
                console.log('the username does not exist, create new user');
                 createUser(req.body.username);
-                
+               /* 
                db.User.findOne({username: req.body.username}, function (err, doc) {
 
                 if(err) {
                     throw err;
                 }
-
                 res.json({user_id: doc.user_id});
 
                });
+               */
             }
         });
     }
