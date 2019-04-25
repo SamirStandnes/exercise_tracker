@@ -12,7 +12,6 @@ const post = require('./tests/post');
 const update = require('./tests/update');
 const newU = require('./middleware/newUser');
 
-
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {

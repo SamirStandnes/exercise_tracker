@@ -1,13 +1,13 @@
 const db = require('../models/db');
-const createUser = require('./createUser');
+//const createUser = require('./createUser');
 
-const checkUsername = () => {
+function checkUsername () {
     console.log("running checkUsername");
-
+    console.log(req.body.username);
     return function (req, res, next) {
-        console.log('using checkUser function');
         console.log(req.body.username);
-      
+        console.log('using checkUser function');
+       
         db.User.findOne({username: req.body.username}, function (err, doc) {
             if(err) {
                 throw err;
@@ -19,9 +19,13 @@ const checkUsername = () => {
             } 
             // User does not exist use fuction for new user creation
             else if (doc === null) {
-               console.log('the username does not exist, create new user');
-                createUser(req.body.username);
-               /* 
+                next();
+
+                /* console.log('the username does not exist, create new user');
+               let str = req.body.username.toString();
+               createUser(req.body.username);
+              */
+               /*
                db.User.findOne({username: req.body.username}, function (err, doc) {
 
                 if(err) {
@@ -30,10 +34,12 @@ const checkUsername = () => {
                 res.json({user_id: doc.user_id});
 
                });
+
                */
+               
             }
         });
     }
-};
+}
 
 module.exports = checkUsername;
