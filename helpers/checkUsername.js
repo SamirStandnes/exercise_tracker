@@ -20,7 +20,7 @@ const checkUsername = () => {
             // User does not exist use fuction for new user creation
             else if (doc === null) {
                console.log('the username does not exist, create new user');
-               let str = req.body.username.toString();
+               //let str = req.body.username.toString();
                createUser(req.body.username);
                /*
                db.User.findOne({username: req.body.username}, function (err, doc) {
