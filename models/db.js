@@ -24,7 +24,8 @@ const exercise_data = new Schema ({
 const newUser = new Schema({
   username: String,
   user_id: String,
-  exercise: [{ date: String, description: String, duration: Number }]
+  count: Number,
+  log: [{ date: String, description: String, duration: Number }]
 });
 
 // init db model

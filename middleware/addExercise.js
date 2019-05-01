@@ -13,7 +13,7 @@ router.post("/api/exercise/add", function(req, res, err) {
   let exercise = { date: req.body.date, description: req.body.description, duration: req.body.duration };
   db.User.findOneAndUpdate(
     { user_id: req.body.userId },
-    { $push: {exercise:exercise} },
+    { $push: {log:exercise} },
     { new: true },
     function(err, doc) {
       if (err) {
