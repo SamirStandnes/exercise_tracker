@@ -5,25 +5,35 @@ const cors = require('cors')
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+var cookieParser = require('cookie-parser')
 
 const test = require('./tests/test');
 const hello = require('./tests/hello');
 const post = require('./tests/post');
-const update = require('./tests/update');
 const newU = require('./middleware/newUser');
+const updateExercise = require('./middleware/addExercise');
 
-app.use(express.static('public'))
+const getData = require('./tests/getData');
+
+app.use(express.static('public'));
+app.use(cookieParser());
+ 
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
+  //console.log('Cookies: ', req.cookies);
+  //console.log('Signed Cookies: ', req.signedCookies);
 });
 
-//app.use(newU);  
+app.use(newU);  
+app.use(updateExercise);
 
 app.use(test);
 app.use(hello);
 app.use(post);
-app.use(update);
+app.use(getData);
+
+//app.use(update);
 
 
 // Not found middleware
