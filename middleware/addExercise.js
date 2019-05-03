@@ -17,7 +17,7 @@ router.post("/api/exercise/add", function(req, res, err) {
     { new: true },
     function(err, doc) {
       if (err) {
-        console.log("some error in updating");
+        console.log("some error in updating", err);
         res.status(404);
       }
       res.status(201).json({ result: "Yes" });

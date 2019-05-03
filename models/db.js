@@ -21,12 +21,15 @@ const exercise_data = new Schema ({
     duration: Number,
 });
 */
+const log = { date: String, description: String, duration: Number };
+
 const newUser = new Schema({
   username: String,
   user_id: String,
   count: Number,
-  log: [{ date: String, description: String, duration: Number }]
+  log: Array
 });
+
 
 // init db model
 const User = mongoose.model("User", newUser);

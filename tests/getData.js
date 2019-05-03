@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models/db");
+const Regex = require("regex");
+
+
 
 /*
 const filterFunction = (done, userId, limit) => {
@@ -25,13 +28,19 @@ router.get("/api/exercise/log?", function(req, res) {
   //(req.query.from === undefined ? null : Date(req.query.from));
   let toDate = req.query.to;
   let limit = req.query.limit;
+  
+  console.log(typeof userId);
 
-  db.User.findOne({ user_id: userId }).exec(function(err, doc) {
+  db.User.find({ user_id: userId }).exec(function(err, doc) {
       if (err) {
+        console.log(err);
         throw err;
       }
-      console.log(doc.exercise);
-      //res.json({status: doc});
+     console.log(typeof doc, doc, doc[0].log[0].duration, doc[0].username);
+
+     // doc[0]['exercise'][0].map(e  => console.log(e));
+
+      res.json({status: doc});
     });
 
   console.log(userId, fromDate, toDate, limit);
