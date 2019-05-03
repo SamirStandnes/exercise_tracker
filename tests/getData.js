@@ -36,13 +36,17 @@ router.get("/api/exercise/log?", function(req, res) {
         console.log(err);
         throw err;
       }
-     console.log(typeof doc, doc, doc[0].log[0].duration, doc[0].username);
+     console.log(typeof doc, doc, doc[0].log, doc[0].username);
 
      // doc[0]['exercise'][0].map(e  => console.log(e));
 
-      res.json({status: doc});
+      res.json(doc);
+      // Model.find always returns an Array simply, 
+      // because find tries to search for all documents that match your search query!
     });
 
+
+  
   console.log(userId, fromDate, toDate, limit);
 
   // function to filter the log array based on query parameters

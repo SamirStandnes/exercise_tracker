@@ -21,7 +21,7 @@ const exercise_data = new Schema ({
     duration: Number,
 });
 */
-const log = { date: String, description: String, duration: Number };
+//const log = { date: String, description: String, duration: Number };
 
 const newUser = new Schema({
   username: String,
