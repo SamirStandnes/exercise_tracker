@@ -8,11 +8,15 @@ router.post("/api/exercise/add", function(req, res, err) {
     req.body.userId,
     req.body.description,
     req.body.duration,
-    req.body.date
+    req.body.date,
   );
   
-  let exercise = { date: req.body.date, description: req.body.description, duration: req.body.duration };
+  // let duration = Number(req.body.duration);
+  let exercise = new db.Log({ user_id: req.body.userId, date: req.body.date, description: req.body.description, duration: req.body.duration });
   
+  exercise.save();
+
+/*
   db.User.findOneAndUpdate(
     { user_id: req.body.userId },
     { $push: {log:exercise} },
@@ -26,6 +30,8 @@ router.post("/api/exercise/add", function(req, res, err) {
       console.log(doc);
     }
   );
+  
+  */
 
   /*
     db.User.findOneAndDelete({username: 'test3'}, function (err, data) {

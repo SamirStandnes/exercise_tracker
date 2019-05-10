@@ -30,9 +30,20 @@ const newUser = new Schema({
   log: Array
 });
 
+const newExercise = new Schema ({
+	user_id: String,
+	date: String,
+	description: String,
+	duration: Number
+});
+
 
 // init db model
 const User = mongoose.model("User", newUser);
 
-//export db model
+const Log = mongoose.model('newExercise', newExercise);
+
+//export db models
 module.exports.User = User;
+
+module.exports.Log = Log;

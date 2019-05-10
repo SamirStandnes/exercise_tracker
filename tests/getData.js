@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models/db");
-const Regex = require("regex");
+//const Regex = require("regex");
 
 
 
@@ -31,12 +31,12 @@ router.get("/api/exercise/log?", function(req, res) {
   
   console.log(typeof userId);
 
-  db.User.find({ user_id: userId }).exec(function(err, doc) {
+  db.Log.find({user_id: req.query.userId}).exec(function(err, doc) {
       if (err) {
         console.log(err);
         throw err;
       }
-     console.log(typeof doc, doc, doc[0].log, doc[0].username);
+     console.log(typeof doc, doc);
 
      // doc[0]['exercise'][0].map(e  => console.log(e));
 
