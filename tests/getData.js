@@ -19,19 +19,20 @@ const filterFunction = (done, userId, limit) => {
 };
 */
 
-router.get("/api/exercise/log?", function(req, res) {
+router.get('/api/exercise/log?', function(req, res) {
   console.log("GET data from userId");
   console.log(req.query.userId);
 
+///log?userId=X
   let userId = String(req.query.userId);
   let fromDate = req.query.from;
   //(req.query.from === undefined ? null : Date(req.query.from));
   let toDate = req.query.to;
   let limit = req.query.limit;
   
-  console.log(typeof userId);
+  console.log(typeof userId, userId);
 
-  db.Log.find({user_id: req.query.userId}).exec(function(err, doc) {
+  db.Log.find({ user_id: 't' , date: { $gt: '2010-01-01', $lt: '2012-01-01' } } ).sort({date: 1}).limit().exec(function(err, doc) {
       if (err) {
         console.log(err);
         throw err;
