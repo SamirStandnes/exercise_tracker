@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+
+
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -10,10 +12,11 @@ app.use(bodyParser.json())
 const test = require('./tests/test');
 const hello = require('./tests/hello');
 const post = require('./tests/post');
+const getUsers = require('./tests/getUsers');
 const newU = require('./middleware/newUser');
 const updateExercise = require('./middleware/addExercise');
 
-const getData = require('./tests/getData');
+const getLog = require('./middleware/getLog');
 
 app.use(express.static('public'));
 //app.use(cookieParser());
@@ -27,11 +30,16 @@ app.get('/', (req, res) => {
 
 app.use(newU);  
 app.use(updateExercise);
+app.use(getLog);
 
+app.use(getUsers);
+
+
+/*
 app.use(test);
 app.use(hello);
 app.use(post);
-app.use(getData);
+*/
 
 //app.use(update);
 

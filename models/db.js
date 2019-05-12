@@ -26,12 +26,11 @@ const exercise_data = new Schema ({
 const newUser = new Schema({
   username: String,
   user_id: String,
-  count: Number,
-  log: Array
 });
 
 const newExercise = new Schema ({
-	user_id: String,
+  username: String,
+  user_id: String,
 	date: String,
 	description: String,
 	duration: Number

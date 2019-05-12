@@ -21,18 +21,16 @@ const filterFunction = (done, userId, limit) => {
 
 router.get('/api/exercise/log?', function(req, res) {
   console.log("GET data from userId");
-  console.log(req.query.userId);
+  console.log(req.query.userId, typeof req.query.from);
 
 ///log?userId=X
-  let userId = String(req.query.userId);
-  let fromDate = req.query.from;
-  //(req.query.from === undefined ? null : Date(req.query.from));
-  let toDate = req.query.to;
-  let limit = req.query.limit;
+  let userId = req.query.userId;
+  let fromDate = (req.query.from === undefined? '1970-01-01' : req.query.from);
+  let toDate = (req.query.to === undefined? '2100-01-01' : req.query.to);
   
-  console.log(typeof userId, userId);
+  //console.log(typeof userId, userId);
 
-  db.Log.find({ user_id: 't' , date: { $gt: '2010-01-01', $lt: '2012-01-01' } } ).sort({date: 1}).limit().exec(function(err, doc) {
+  db.Log.find({ user_id: userId, date: { $gt: fromDate, $lt: toDate } } ).sort({date: 1}).limit(req.body.limit).exec(function(err, doc) {
       if (err) {
         console.log(err);
         throw err;
@@ -48,7 +46,7 @@ router.get('/api/exercise/log?', function(req, res) {
 
 
   
-  console.log(userId, fromDate, toDate, limit);
+  //console.log(userId, fromDate, toDate, limit);
 
   // function to filter the log array based on query parameters
   //
