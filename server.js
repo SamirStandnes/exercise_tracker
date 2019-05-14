@@ -12,7 +12,9 @@ app.use(bodyParser.json())
 const test = require('./tests/test');
 const hello = require('./tests/hello');
 const post = require('./tests/post');
-const getUsers = require('./tests/getUsers');
+
+
+const getUsers = require('./middleware/getUsers');
 const newU = require('./middleware/newUser');
 const updateExercise = require('./middleware/addExercise');
 
