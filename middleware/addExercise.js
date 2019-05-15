@@ -18,8 +18,7 @@ router.post("/api/exercise/add", function(req, res, err) {
 
  let  date = ( req.body.date === '' || isNaN(new Date(req.body.date)) ? new Date() : new Date(req.body.date));
  
- date = date.toString().split(' ').splice(0,4).join(' '); 
-
+ date = date.toISOString().split('T')[0]; 
 
 
 /*

@@ -25,14 +25,24 @@ router.get('/api/exercise/log?', function(req, res) {
      //let exercises = []; 
      //console.log(typeof doc, doc, doc.length);
      //doc.map((e) => exercises.push(e));
-      
      
+     //let date = new Date(e.date).toString().split(' ').splice(0,4).join(' ');  
+      if (doc.length === 0) {
+        res.send('empty result set');
+
+      }
+      else {
+      
       res.json({
         username: doc[0].username,
         user_id: doc[0].user_id,
         count: doc.length,
-        log: doc.map((e) => new Object({description: e.description, duration : e.duration, date: e.date}))
-      });
+        log: doc.map((e) => new Object({description: e.description, duration : e.duration, date: new Date(e.date).toString().split(' ').splice(0,4).join(' ')}))
+      });  
+      
+      }
+
+      
       //console.log(exercises);
       
 
