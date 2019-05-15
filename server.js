@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 // Error Handling middleware
 app.use((err, req, res, next) => {
-  let errCode, errMessage
+  let errCode, errMessageF
 
   if (err.errors) {
     // mongoose validation error
@@ -70,6 +70,6 @@ app.use((err, req, res, next) => {
     .send(errMessage)
 })
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || port, () => {
   console.log('The magic is happening on port ' + listener.address().port + Date())
 })
