@@ -14,8 +14,6 @@ router.get('/api/exercise/log?', function(req, res) {
   
   //console.log(typeof userId, userId);
 
-
-
   db.Log.find({ user_id: userId, date: { $gt: fromDate, $lt: toDate } } ).sort({date: 1}).limit(req.body.limit).exec(function(err, doc) {
       if (err) {
         console.log(err);
@@ -28,7 +26,7 @@ router.get('/api/exercise/log?', function(req, res) {
      
      //let date = new Date(e.date).toString().split(' ').splice(0,4).join(' ');  
       if (doc.length === 0) {
-        res.send('empty result set');
+        res.send('empty result set, check the parameters to make sure the format is correct');
 
       }
       else {

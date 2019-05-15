@@ -1,7 +1,7 @@
 const db = require("../models/db");
 
 const createUser = () => {
-  return async function(req, res, next) {
+  return function(req, res, next) {
     const userId = str => {
       return (
         str +
@@ -11,7 +11,7 @@ const createUser = () => {
       );
     };
 
-    let newUserId = await userId(req.body.username);
+    let newUserId = userId(req.body.username);
 
     console.log(newUserId);
 
