@@ -8,8 +8,7 @@ router.post("/api/exercise/add", function(req, res, err) {
     req.body.userId,
     req.body.description,
     req.body.duration,
-    req.body.date,
-  );
+    req.body.date);
   
 
   //let date = new Date(req.body.date);
